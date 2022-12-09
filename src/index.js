@@ -48,15 +48,16 @@ const onSubmit = async e => {
   page = 1;
 
   if (query === '') {
+    refs.loadBtn.classList.remove('show');
     Notiflix.Notify.failure('Please write something');
     return;
   }
   const photos = await fetchImages(query, page, perPage);
   if (photos.totalHits === 0) {
-    refs.loadBtn.classList.remove('show');
     Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
+    refs.loadBtn.classList.remove('show');
     return;
   } else {
     refs.loadBtn.classList.add('show');
